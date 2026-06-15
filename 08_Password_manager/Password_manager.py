@@ -1,5 +1,24 @@
+from getpass import getpass
+
 passwords = {}
-master_code = "codewithshadow"
+try:
+ with open("masters.txt", "r") as file:
+      master_code = file.read().strip()
+
+except FileNotFoundError:
+   print("No existing master code found. You need to set a master code.")
+
+   master_code = getpass("Set a master code for the password manager: ")
+   master_code_confirm = getpass("Confirm the master code: ")
+   if master_code == master_code_confirm:
+      print("Master code set successfully.")
+      with open("masters.txt", "w") as file:
+       file.write(master_code)
+      
+   else:
+      print("Master code confirmation does not match. Exiting the program.")
+      exit()
+
 try:
    with open("passwords.txt", "r") as file:
     for line in file:
@@ -21,7 +40,7 @@ while True:
 
    if option == 1:
     where = input("Which password is this (e.g., 'email', 'bank', etc.): ")      
-    code = input("Enter a password to store: ")
+    code = getpass("Enter a password to store: ")
     passwords[where] = code
     with open("passwords.txt", "w") as file:
        print("Password saved successfully.")
@@ -31,7 +50,7 @@ while True:
     
    elif option == 2:
     view = str(input("which password do you want to view?: "))
-    master = input("Enter the master code to view the password: ")
+    master = getpass("Enter the master code to view the password: ")
     if master == master_code:
        pass
     else:
@@ -45,7 +64,7 @@ while True:
 
    elif option == 3:
         delete_website = input("Which password do you want to delete?: e.g., 'email', 'bank', etc.: ")
-        master = input("Enter the master code to delete the password: ")
+        master = getpass("Enter the master code to delete the password: ")
         if master == master_code:
            pass 
         else:
