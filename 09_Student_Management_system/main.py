@@ -69,3 +69,4 @@ sms.remove_student(3)
 sms.display_name()
 sms.search_students(99)
 sms.update_student_name(99, "Patrick")
+
