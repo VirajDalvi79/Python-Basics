@@ -30,10 +30,3 @@ class Account:
 
 
 
-
-acc1 = Account(23445643, "Viraj", 5000)
-acc1.deposit(1000)
-acc1.withdraw(400)
-
-
-print(acc1.balance)
