@@ -21,3 +21,18 @@ class Bank:
         cursor.execute("UPDATE accounts SET balance = balance - %s WHERE account_number = %s",
                       (amount, account_number))
         connection.commit()
+
+    def get_balance(self, account_number):
+       cursor.execute("SELECT balance FROM accounts WHERE account_number = %s",
+                      (account_number,))
+       balance = cursor.fetchone()
+       if balance:
+        return balance[0]
+       else:
+          return None
+
+    def display_all_accounts(self):
+       cursor.execute("SELECT name, account_number FROM accounts")
+       accounts = cursor.fetchall()
+       for name, account_number in accounts:
+        print(f"Name: {name}, Account Number: {account_number}")
