@@ -47,10 +47,15 @@ while True:
 
     elif option == 6:
      account_number = int(input("Enter the account number: "))
-    if bank.remove_account(account_number):
+     if bank.remove_account(account_number):
         print("Account removed successfully.")
-    else:
-        print("Account not found.")     
+     else:
+        print("Account not found.")   
+
+    elif option == 7:
+       print("Thank you for using Bank Management System.")
+       break     
+
 
    except KeyboardInterrupt:
         print("Bye Bye")     
